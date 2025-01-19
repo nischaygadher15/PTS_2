@@ -1,1 +1,24 @@
+.projectTray {
+  position: absolute;
+  top: 100%;
+  left: 0px;
+  opacity: 0.8;
+  transition: top 0.3s linear;
+}
 
+.projectBox:hover .projectTray {
+  top: 0px;
+}
+
+.bgGradient {
+  background: linear-gradient(0deg, rgb(132 144 255) 0%, rgb(98 189 252) 100%);
+}
+
+.cardShadow {
+  box-shadow: 0px 0px 20px 0px rgb(132 144 255 / 20%);
+  padding: 40px 24px;
+}
+
+.boxShadow {
+  box-shadow: 0px 0px 20px 0px rgb(132 144 255 / 20%);
+}
