@@ -1,0 +1,3 @@
+loader on images & page render, lazy loading
+
+container issue

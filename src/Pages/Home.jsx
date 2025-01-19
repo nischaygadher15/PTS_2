@@ -69,10 +69,6 @@ const Home = () => {
   const customTheme = {
     root: {
       base: "relative h-full w-full",
-      leftControl:
-        "absolute left-0 top-0 flex h-full items-center justify-center px-4 focus:outline-none",
-      rightControl:
-        "absolute right-0 top-0 flex h-full items-center justify-center px-4 focus:outline-none",
     },
     indicators: {
       active: {
@@ -89,15 +85,32 @@ const Home = () => {
         on: "w-full flex-shrink-0 transform cursor-grab snap-center",
       },
     },
-    control: {
-      base: "inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/30 group-hover:bg-white/50 group-focus:outline-none group-focus:ring-4 group-focus:ring-white dark:bg-gray-800/30 dark:group-hover:bg-gray-800/60 dark:group-focus:ring-gray-800/70 sm:h-10 sm:w-10",
-      icon: "h-5 w-5 text-white dark:text-gray-800 sm:h-6 sm:w-6",
-    },
     scrollContainer: {
       base: "flex h-full snap-mandatory overflow-y-hidden overflow-x-scroll scroll-smooth rounded-lg",
       snap: "snap-x",
     },
   };
+
+  //Customer Opinions
+  let [customers, setCustomers] = useState([]);
+
+  let createCusArray = () => {
+    let temp = [];
+    let buff = [];
+    for (let i = 0; i < opinions.length; i++) {
+      if (temp.length == 2) {
+        buff.push(temp);
+      } else {
+        if (i == opinions.length - 1) buff.push(opinions[i]);
+        else temp.push(opinions[i]);
+      }
+    }
+
+    setCustomers(buff);
+  };
+
+  useEffect(() => createCusArray(), []);
+  useEffect(() => console.log(customers), [customers]);
 
   return (
     <>
@@ -132,7 +145,7 @@ const Home = () => {
       {/* Company Details */}
       <section className="px-10 py-24 max-w-screen-sm min-h-screen md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl">
         <div className="flex gap-x-20 text-[#8e8f87] text-lg">
-          <div className="w-1/2 flex items-center">
+          <div className="w-1/2 flex justify-center items-center">
             <img
               src={banner2}
               alt="PTS Banner"
@@ -308,7 +321,7 @@ const Home = () => {
 
       {/* Numbers Section */}
       <section
-        className="py-24 max-w-screen-sm  md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl text-white text-center flex justify-evenly bgGradient"
+        className="py-24 w-screen text-white text-center flex justify-evenly bgGradient"
         ref={counterObserver}
       >
         <div>
@@ -481,20 +494,55 @@ const Home = () => {
       </section>
 
       {/* Happy Clients Works */}
-      <section className="px-10 min-h-screen py-24 max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl">
+      <section className="px-10 py-24 max-w-screen-sm min-h-screen md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl">
         <div className="w-1/2 text-black font-semibold text-lg mb-10">
-          <span className="text-5xl font-semibold">Services offers</span>
+          <span className="text-5xl font-semibold">Happy Clients Works</span>
           <div className="flex items-center mt-3">
             <span className="bg-[#8490FF] w-4 h-4 rounded-full"></span>
             <span className="bg-[#8490FF] h-1 w-52"></span>
           </div>
         </div>
         <Carousel className="h-[60vh]" theme={customTheme}>
-          <div className="h-full bg-white grid grid-cols-2">
-            <CustomerCard cusData={{ ...opinions[0] }} />
-            <CustomerCard cusData={{ ...opinions[1] }} />
-          </div>
+          {customers &&
+            customers.map((arr, inx) => (
+              <div
+                className="h-full bg-white grid grid-cols-2"
+                key={`${key}-customer-${inx}`}
+              >
+                {arr.map((ele, inx) => (
+                  <CustomerCard
+                    cusData={{ ...ele }}
+                    key={`${key}-customerArr-${inx}`}
+                  />
+                ))}
+              </div>
+            ))}
         </Carousel>
+      </section>
+
+      {/* Available for 24/7 */}
+      <section className="py-24 w-screen bg-[#7892FF]">
+        <div className="h-full flex flex-col items-center justify-center gap-6 text-white">
+          <p className="text-7xl">
+            We Are <span className="text-[#A0F669]">Available</span> For 24/7*
+          </p>
+          <p>
+            We offers best Web Design Services, Website Design, Web Development,
+            SEO Marketing Services,Social Media Marketing, PSD to HTML.
+          </p>
+
+          <NavLink
+            to="/contact"
+            className="w-44 mt-3 py-4 text-center bg-[rgb(103,230,65)] text-white font-semibold hover:shadow-lg hover:shadow-[rgb(158,241,132)]"
+          >
+            CONTACT US
+          </NavLink>
+        </div>
+      </section>
+
+      {/* Contact Us Form */}
+      <section className="px-10 min-h-screen py-24 max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl">
+        <form action="#"></form>
       </section>
     </>
   );
