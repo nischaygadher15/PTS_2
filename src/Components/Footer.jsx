@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useId } from "react";
 import { FaArrowRight, FaInstagram, FaLinkedin } from "react-icons/fa6";
 import {
   IoCallOutline,
@@ -13,6 +13,8 @@ const Footer = () => {
     "text-[rgba(255,255,255,0.6)] hover:text-white text-lg flex items-center gap-3";
 
   let links = ["Home", "About", "Service", "Company Detail", "Contact"];
+
+  let eleKey = useId();
 
   let services = [
     "Web Design",
@@ -36,31 +38,31 @@ const Footer = () => {
         {/* Links */}
         <div>
           <p className="text-xl mb-10 font-medium text-white">Links</p>
-          <ui className="list-none">
-            {links.map((l) => (
-              <li className="mb-3">
+          <ul className="list-none">
+            {links.map((l, inx) => (
+              <li className="mb-3" key={`${eleKey}-links-${inx}`}>
                 <NavLink to="/" className={footLinkClass}>
                   <FaArrowRight className="text-md" />
                   {l}
                 </NavLink>
               </li>
             ))}
-          </ui>
+          </ul>
         </div>
 
         {/* Services */}
         <div>
           <p className="text-xl mb-10 font-medium text-white">Services</p>
-          <ui className="list-none">
-            {services.map((l) => (
-              <li className="mb-3">
+          <ul className="list-none">
+            {services.map((l, inx) => (
+              <li className="mb-3" key={`${eleKey}-services-${inx}`}>
                 <NavLink to="/" className={footLinkClass}>
                   <FaArrowRight className="text-md" />
                   {l}
                 </NavLink>
               </li>
             ))}
-          </ui>
+          </ul>
         </div>
 
         {/* Questions */}
@@ -68,7 +70,7 @@ const Footer = () => {
           <p className="text-xl mb-10 font-medium text-white">
             Have a Questions?
           </p>
-          <ui className="list-none text-[]">
+          <ul className="list-none">
             <li className="mb-3">
               <a
                 href="https://maps.app.goo.gl/FdvEEHqA7KAZMUqa8"
@@ -95,7 +97,7 @@ const Footer = () => {
                 <span>prahyatechservices@gmail.com</span>
               </a>
             </li>
-          </ui>
+          </ul>
         </div>
       </div>
 
