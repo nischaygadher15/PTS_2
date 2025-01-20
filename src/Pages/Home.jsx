@@ -1,39 +1,16 @@
 import React, { useEffect, useId, useRef, useState } from "react";
 import banner1 from "../assets/images/PTSWEBSITELAUNCH.jpeg";
-import banner2 from "../assets/images/biologo (1)-min.jpg";
 import { NavLink } from "react-router-dom";
-import {
-  Button,
-  Card,
-  Carousel,
-  Label,
-  Progress,
-  Textarea,
-  TextInput,
-} from "flowbite-react";
-import project from "../assets/images/website2.jpg";
 import "../App.css";
-import { FaGoogle, FaInstagram, FaPlus } from "react-icons/fa";
+import { FaPlus } from "react-icons/fa";
 import CountUp from "react-countup";
-import {
-  IoAnalyticsOutline,
-  IoColorFilterSharp,
-  IoDesktop,
-  IoDesktopSharp,
-} from "react-icons/io5";
-import opinions from "../Data/CustomerOpinions";
-import CustomerCard from "../Components/CustomerCard";
+import projects from "../Data/Projects";
+import About from "./About";
+import Service from "./Service";
+import Review from "./Review";
+import Contact from "./Contact";
 
 const Home = () => {
-  let projects = [
-    "PROJECT 1",
-    "PROJECT 2",
-    "PROJECT 3",
-    "PROJECT 4",
-    "PROJECT 5",
-    "PROJECT 6",
-  ];
-
   // Unique key for components
   let key = useId();
 
@@ -73,52 +50,49 @@ const Home = () => {
     };
   }, []);
 
-  //Carousel Theme
-  const customTheme = {
-    root: {
-      base: "relative h-full w-full",
-    },
-    indicators: {
-      active: {
-        off: "bg-[#CCCCCC] hover:bg-white dark:bg-gray-800/50 dark:hover:bg-gray-800",
-        on: "bg-[#007AFF] dark:bg-gray-800",
-      },
-      base: "h-3 w-3 rounded-full",
-      wrapper: "absolute bottom-5 left-1/2 flex -translate-x-1/2 space-x-3",
-    },
-    item: {
-      base: "absolute left-1/2 top-1/2 block w-full -translate-x-1/2 -translate-y-1/2",
-      wrapper: {
-        off: "w-full flex-shrink-0 transform cursor-default snap-center",
-        on: "w-full flex-shrink-0 transform cursor-grab snap-center",
-      },
-    },
-    scrollContainer: {
-      base: "flex h-full snap-mandatory overflow-y-hidden overflow-x-scroll scroll-smooth rounded-lg",
-      snap: "snap-x",
-    },
-  };
+  //Work Tab Functionality
+  let [filtered, setFiltered] = useState([]);
 
-  //Customer Opinions
-  let [customers, setCustomers] = useState([]);
+  let handleTabClick = (t) => {
+    let tabButtons = document.getElementById("tabButtons");
+    Array.from(tabButtons.children).forEach((b, inx) => {
+      b.style.marginTop = "0px";
+    });
 
-  let createCusArray = () => {
-    let temp = [];
-    let buff = [];
-    for (let i = 0; i < opinions.length; i++) {
-      if (temp.length == 2) {
-        buff.push(temp);
-      } else {
-        if (i == opinions.length - 1) buff.push(opinions[i]);
-        else temp.push(opinions[i]);
-      }
+    document.getElementById(t).style.marginTop = "-20px";
+
+    switch (t) {
+      case "tab-1":
+        filterProjects("website");
+        break;
+      case "tab-2":
+        filterProjects("graphicdesign");
+        break;
+      case "tab-3":
+        filterProjects("socialmedia");
+        break;
+      default:
+        filterProjects("all");
+        break;
     }
-
-    setCustomers(buff);
   };
 
-  useEffect(() => createCusArray(), []);
-  useEffect(() => console.log(customers), [customers]);
+  // Filtering Projects
+  let filterProjects = (pty) => {
+    let temp = [];
+    if (pty == "all") temp = [...projects];
+    else temp = projects.filter((p) => p.type === pty);
+
+    setFiltered(temp);
+  };
+
+  //Set to all in beginning
+  useEffect(() => {
+    handleTabClick("tab-0");
+    filterProjects("all");
+  }, []);
+
+  // useEffect(() => console.log(filtered), [filtered]);
 
   return (
     <>
@@ -139,7 +113,7 @@ const Home = () => {
 
             <NavLink
               to="/contact"
-              className="max-w-44 mt-3 py-4 text-center bg-[#62BDFC] text-white font-semibold hover:shadow-xl hover:shadow-[#b8ddf7]"
+              className="max-w-44 mt-3 py-4 text-center bg-[#62BDFC] text-white font-semibold hover:shadow-xl hover:shadow-[#b8ddf7] bgGradient"
             >
               CONTACT US
             </NavLink>
@@ -151,108 +125,7 @@ const Home = () => {
       </section>
 
       {/* Company Details */}
-      <section className="px-10 py-24 max-w-screen-sm min-h-screen md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl">
-        <div className="flex gap-x-20 text-[#8e8f87] text-lg">
-          <div className="w-1/2 flex justify-center items-center">
-            <img
-              src={banner2}
-              alt="PTS Banner"
-              className="w-[90%]"
-              style={{
-                boxShadow: "-1.3rem -1.3rem #8490FF",
-              }}
-            />
-          </div>
-
-          <div className="w-1/2 flex flex-col gap-y-5">
-            <div className="text-black font-semibold">
-              <span className="text-5xl font-semibold">Company Details</span>
-              <div className="flex items-center mt-3">
-                <span className="bg-[#8490FF] w-4 h-4 rounded-full"></span>
-                <span className="bg-[#8490FF] h-1 w-52"></span>
-              </div>
-            </div>
-            <p className="mt-5">
-              We are the most demanded SEO company in Ahmedabad . Are you
-              looking for a cheap Social Media Marketing Ahmedabad service.
-            </p>
-            <p className="mb-7">
-              The stunning design and eye-catching graphics design we can
-              provide for your websites make us one of the top website
-              development company in Ahmedabad. The company's services include
-              SEO, Web Design & Development, Graphic Design, Social Media
-              Marketing, Data Scraping services in Ahmedabad. Contact us today
-              for more.
-            </p>
-
-            {/* Progress Bars */}
-            <div>
-              <Progress
-                progress={95}
-                color="blue"
-                progressLabelPosition="outside"
-                textLabel="Graphic Design"
-                textLabelPosition="outside"
-                size="md"
-                labelProgress
-                labelText
-                className="mb-5"
-              />
-              <Progress
-                progress={95}
-                color="blue"
-                progressLabelPosition="outside"
-                textLabel="Graphic Design"
-                textLabelPosition="outside"
-                size="md"
-                labelProgress
-                labelText
-                className="mb-5"
-              />
-              <Progress
-                progress={95}
-                color="blue"
-                progressLabelPosition="outside"
-                textLabel="Graphic Design"
-                textLabelPosition="outside"
-                size="md"
-                labelProgress
-                labelText
-                className="mb-5"
-              />
-              <Progress
-                progress={95}
-                color="blue"
-                progressLabelPosition="outside"
-                textLabel="Graphic Design"
-                textLabelPosition="outside"
-                size="md"
-                labelProgress
-                labelText
-                className="mb-5"
-              />
-              <Progress
-                progress={95}
-                color="blue"
-                progressLabelPosition="outside"
-                textLabel="Graphic Design"
-                textLabelPosition="outside"
-                size="md"
-                labelProgress
-                labelText
-                className="mb-5"
-              />
-            </div>
-
-            <NavLink
-              to="/contact"
-              className="max-w-44 mt-3 py-4 text-center bg-[#62BDFC] text-white font-semibold hover:shadow-xl hover:shadow-[#b8ddf7]"
-            >
-              CONTACT US
-            </NavLink>
-          </div>
-        </div>
-      </section>
+      <About />
 
       {/* Latest Works */}
       <section className="px-10 py-24 max-w-screen-sm min-h-screen md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl">
@@ -273,28 +146,39 @@ const Home = () => {
           </div>
           <div className="w-full">
             {/* Tab Button */}
-            <div className="flex justify-center items-center gap-8">
+            <div
+              className="flex justify-center items-center gap-8"
+              id="tabButtons"
+              onClick={(e) => handleTabClick(e.target.id)}
+            >
               <button
-                className="mt-3 py-3 rounded-md px-8 text-center bg-[#62BDFC] text-white font-semibold hover:shadow-xl 
-              hover:shadow-[#b8ddf7] uppercase text-nowrap"
+                className="py-3 rounded-md px-8 text-center bg-[#62BDFC] text-white font-semibold hover:shadow-xl 
+              hover:shadow-[#b8ddf7] uppercase text-nowrap bgGradient tabBtn"
+                id="tab-0"
               >
                 All
               </button>
+
               <button
-                className="mt-3 py-3 rounded-md px-8 text-center bg-[#62BDFC] text-white font-semibold hover:shadow-xl 
-              hover:shadow-[#b8ddf7] uppercase text-nowrap"
+                className="py-3 rounded-md px-8 text-center bg-[#62BDFC] text-white font-semibold hover:shadow-xl 
+              hover:shadow-[#b8ddf7] uppercase text-nowrap bgGradient tabBtn"
+                id="tab-1"
               >
                 WEBSITE
               </button>
+
               <button
-                className="mt-3 py-3 rounded-md px-8 text-center bg-[#62BDFC] text-white font-semibold hover:shadow-xl 
-              hover:shadow-[#b8ddf7] uppercase text-nowrap"
+                className="py-3 rounded-md px-8 text-center bg-[#62BDFC] text-white font-semibold hover:shadow-xl 
+              hover:shadow-[#b8ddf7] uppercase text-nowrap bgGradient tabBtn"
+                id="tab-2"
               >
                 Graphic Design
               </button>
+
               <button
-                className="mt-3 py-3 rounded-md px-8 text-center bg-[#62BDFC] text-white font-semibold hover:shadow-xl 
-              hover:shadow-[#b8ddf7] uppercase text-nowrap"
+                className="py-3 rounded-md px-8 text-center bg-[#62BDFC] text-white font-semibold hover:shadow-xl 
+              hover:shadow-[#b8ddf7] uppercase text-nowrap bgGradient tabBtn"
+                id="tab-3"
               >
                 Social Media
               </button>
@@ -302,26 +186,29 @@ const Home = () => {
 
             {/* Tab Content */}
             <div className="pt-16 grid grid-cols-3 gap-6">
-              {projects.map((i, inx) => (
-                <div
-                  key={`${key}-project-${inx}`}
-                  className="relative overflow-hidden projectBox"
-                >
-                  <img
-                    src={project}
-                    alt={`${i} Photo`}
-                    className="rounded-md"
-                  />
-                  <div className="w-full h-full z-10 rounded-md projectTray bgGradient">
-                    <a
-                      href="#"
-                      className="w-full h-full flex justify-center items-center"
-                    >
-                      <p className="text-white font-bold text-5xl">{i}</p>
-                    </a>
+              {filtered &&
+                filtered.map((i, inx) => (
+                  <div
+                    key={`${key}-project-${inx}`}
+                    className="relative overflow-hidden projectBox"
+                  >
+                    <img
+                      src={i.img}
+                      alt={`${i.name} Photo`}
+                      className="rounded-md"
+                    />
+                    <div className="w-full h-full z-10 rounded-md projectTray bgGradient">
+                      <a
+                        href="#"
+                        className="w-full h-full flex justify-center items-center"
+                      >
+                        <p className="text-white font-bold text-5xl">
+                          {i.name}
+                        </p>
+                      </a>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
             </div>
           </div>
         </div>
@@ -405,128 +292,10 @@ const Home = () => {
       </section>
 
       {/* Services Offers */}
-      <section className="px-10 py-24 max-w-screen-sm min-h-screen md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl">
-        <div className="w-1/2 text-[#8e8f87] text-lg">
-          <div className="text-black font-semibold">
-            <span className="text-5xl font-semibold">Services offers</span>
-            <div className="flex items-center mt-3">
-              <span className="bg-[#8490FF] w-4 h-4 rounded-full"></span>
-              <span className="bg-[#8490FF] h-1 w-52"></span>
-            </div>
-          </div>
-          <p className="mt-5 mb-16">
-            We offers best Web Design & Development Services,SEO Marketing
-            Services,Social Media Marketing,Graphic Design & Data Scraping
-            Company in Ahmedabad.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-3 gap-20">
-          <Card className="cardShadow">
-            <IoDesktopSharp className="text-7xl mx-auto" />
-
-            <h5 className="text-xl text-center mt-3 font-semibold tracking-tight text-gray-900">
-              Web Design
-            </h5>
-            <p className="font-normal text-gray-700 dark:text-gray-400">
-              We are the most experienced and exceptionally believed Web Design
-              Company in Ahmedabad. Get your Responsive Business Website Desgin
-            </p>
-          </Card>
-
-          <Card className="cardShadow">
-            <IoDesktop className="text-7xl mx-auto" />
-
-            <h5 className="text-xl text-center mt-3 font-semibold tracking-tight text-gray-900">
-              Web Development
-            </h5>
-            <p className="font-normal text-gray-700 dark:text-gray-400">
-              We offer secure, versatile and present day web development
-              services to help you consistently associate with your clients and
-              accomplices.
-            </p>
-          </Card>
-
-          <Card className="cardShadow">
-            <IoColorFilterSharp className="text-7xl mx-auto" />
-
-            <h5 className="text-xl text-center mt-3 font-semibold tracking-tight text-gray-900">
-              Grahpic Design
-            </h5>
-            <p className="font-normal text-gray-700 dark:text-gray-400">
-              Offer Custom logo plan and corporate Brand personality
-              administration by an expert realistic and logo creators to arrive
-              at the ideal market with certain.
-            </p>
-          </Card>
-
-          <Card className="cardShadow">
-            <FaGoogle className="text-7xl mx-auto" />
-
-            <h5 className="text-xl text-center mt-3 font-semibold tracking-tight text-gray-900">
-              SEO
-            </h5>
-            <p className="font-normal text-gray-700 dark:text-gray-400">
-              Our Search Engine Optimization administrations are planned with
-              the goal to give our client sites the most ideal web-based
-              presence.
-            </p>
-          </Card>
-
-          <Card className="cardShadow">
-            <FaInstagram className="text-7xl mx-auto" />
-
-            <h5 className="text-xl text-center mt-3 font-semibold tracking-tight text-gray-900">
-              Social Media Marketing
-            </h5>
-            <p className="font-normal text-gray-700 dark:text-gray-400">
-              We are specialist Social media marketing experts in both
-              Web-development, Design and Digital Marketing. We want to bring
-              your business online or grow your performance .
-            </p>
-          </Card>
-
-          <Card className="cardShadow">
-            <IoAnalyticsOutline className="text-7xl mx-auto" />
-
-            <h5 className="text-xl text-center mt-3 font-semibold tracking-tight text-gray-900">
-              Data Scraping
-            </h5>
-            <p className="font-normal text-gray-700 dark:text-gray-400">
-              PTS Scraping gives Web Scraping Services in Ahmedabad to Scrape
-              Data from different sites and online sources. Our expert Web Data
-              Scraping service are Python Web Scraping, Web Scraper Tools.
-            </p>
-          </Card>
-        </div>
-      </section>
+      <Service />
 
       {/* Happy Clients Works */}
-      <section className="px-10 py-24 w-screen min-h-screen md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl">
-        <div className="w-1/2 text-black font-semibold text-lg mb-10">
-          <span className="text-5xl font-semibold">Happy Clients Works</span>
-          <div className="flex items-center mt-3">
-            <span className="bg-[#8490FF] w-4 h-4 rounded-full"></span>
-            <span className="bg-[#8490FF] h-1 w-52"></span>
-          </div>
-        </div>
-        <Carousel className="h-[60vh]" theme={customTheme}>
-          {customers &&
-            customers.map((arr, inx) => (
-              <div
-                className="h-full bg-white grid grid-cols-2"
-                key={`${key}-customer-${inx}`}
-              >
-                {arr.map((ele, inx) => (
-                  <CustomerCard
-                    cusData={{ ...ele }}
-                    key={`${key}-customerArr-${inx}`}
-                  />
-                ))}
-              </div>
-            ))}
-        </Carousel>
-      </section>
+      <Review />
 
       {/* Available for 24/7 */}
       <section className="py-24 w-screen bg-[#7892FF]">
@@ -541,7 +310,8 @@ const Home = () => {
 
           <NavLink
             to="/contact"
-            className="w-44 mt-3 py-4 text-center bg-[rgb(103,230,65)] text-white font-semibold hover:shadow-lg hover:shadow-[rgb(158,241,132)]"
+            className="w-44 mt-3 py-4 text-center bg-[rgb(103,230,65)] text-white font-semibold hover:shadow-lg
+             hover:shadow-[rgb(158,241,132)] bgGradient"
           >
             CONTACT US
           </NavLink>
@@ -549,67 +319,7 @@ const Home = () => {
       </section>
 
       {/* Contact Us Form */}
-      <section className="px-10 w-screen min-h-screen py-24 max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl">
-        <div className="w-1/2 text-black font-semibold text-lg mb-10">
-          <span className="text-5xl font-semibold">Contact Us</span>
-          <div className="flex items-center mt-3">
-            <span className="bg-[#8490FF] w-4 h-4 rounded-full"></span>
-            <span className="bg-[#8490FF] h-1 w-52"></span>
-          </div>
-        </div>
-        <div className="w-full flex justify-center">
-          <form action="#" className="w-1/2">
-            <div className="mb-3 flex items-center gap-6">
-              <div className="w-1/2">
-                <TextInput
-                  id="username"
-                  type="text"
-                  placeholder="Username"
-                  helperText={
-                    <span className="font-medium">Error Message here</span>
-                  }
-                />
-              </div>
-              <div className="w-1/2">
-                <TextInput
-                  id="email"
-                  type="text"
-                  placeholder="Email"
-                  helperText={
-                    <span className="font-medium">Error Message here</span>
-                  }
-                />
-              </div>
-            </div>
-            <div className="mb-3">
-              <TextInput
-                id="subject"
-                type="text"
-                placeholder="Subject"
-                helperText={
-                  <span className="font-medium">Error Message here</span>
-                }
-              />
-            </div>
-            <div className="mb-7">
-              <Textarea
-                id="message"
-                placeholder="Leave a message here..."
-                rows={9}
-                helperText={
-                  <span className="font-medium">Error Message here</span>
-                }
-              />
-            </div>
-
-            <div className="mb-7">
-              <Button type="submit" color="blue">
-                SEND MESSAGE
-              </Button>
-            </div>
-          </form>
-        </div>
-      </section>
+      <Contact />
     </>
   );
 };
