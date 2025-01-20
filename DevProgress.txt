@@ -1,3 +1,10 @@
-loader on images & page render, lazy loading
+1. loader on images & page render, lazy loading => Loader Comp.
 
-container issue
+2. responsive website => tailwind
+
+3. bottom2top button => comp.
+
+4. Hydration Effect => web/gpt
+
+(DONE validation) 5. contact form hadleSubmit => ""node mailer"" => set up backend
+             & validation => react-hook-form / yup revision.
