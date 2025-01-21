@@ -26,3 +26,44 @@
 .tabBtn {
   transition: all 300ms linear;
 }
+
+.service-icon,
+.media-icon,
+.back2top-icon {
+  background-color: rgba(144, 172, 209, 0.2);
+  border-radius: 56% 44% 70% 30% / 30% 54% 46% 70%;
+  position: relative;
+  animation: water-wave 3s linear infinite;
+  cursor: pointer;
+}
+
+.back2top-icon {
+  background-color: #8490ff;
+}
+
+.service-icon::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: 90%;
+  border-radius: 56% 44% 70% 30% / 30% 54% 46% 70%;
+  background: transparent;
+  border: 2px solid #212529;
+  animation: water-wave 3s linear infinite;
+  cursor: pointer;
+}
+
+@keyframes water-wave {
+  0% {
+    border-radius: 56% 44% 70% 30% / 30% 54% 46% 70%;
+  }
+  50% {
+    border-radius: 3% 97% 15% 85% / 72% 0% 100% 28%;
+  }
+  100% {
+    border-radius: 56% 44% 70% 30% / 30% 54% 46% 70%;
+  }
+}

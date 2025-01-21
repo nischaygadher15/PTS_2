@@ -31,7 +31,9 @@ const Service = () => {
 
         <div className="grid grid-cols-3 gap-20">
           <Card className="cardShadow">
-            <IoDesktopSharp className="text-7xl mx-auto" />
+            <div className="service-icon w-28 h-24 flex justify-center items-center mx-auto">
+              <IoDesktopSharp className="text-7xl" />
+            </div>
 
             <h5 className="text-xl text-center mt-3 font-semibold tracking-tight text-gray-900">
               Web Design
@@ -43,7 +45,9 @@ const Service = () => {
           </Card>
 
           <Card className="cardShadow">
-            <IoDesktop className="text-7xl mx-auto" />
+            <div className="service-icon w-28 h-24 flex justify-center items-center mx-auto">
+              <IoDesktop className="text-7xl mx-auto" />
+            </div>
 
             <h5 className="text-xl text-center mt-3 font-semibold tracking-tight text-gray-900">
               Web Development
@@ -56,8 +60,9 @@ const Service = () => {
           </Card>
 
           <Card className="cardShadow">
-            <IoColorFilterSharp className="text-7xl mx-auto" />
-
+            <div className="service-icon w-28 h-24 flex justify-center items-center mx-auto">
+              <IoColorFilterSharp className="text-7xl mx-auto" />
+            </div>
             <h5 className="text-xl text-center mt-3 font-semibold tracking-tight text-gray-900">
               Grahpic Design
             </h5>
@@ -69,8 +74,9 @@ const Service = () => {
           </Card>
 
           <Card className="cardShadow">
-            <FaGoogle className="text-7xl mx-auto" />
-
+            <div className="service-icon w-28 h-24 flex justify-center items-center mx-auto">
+              <FaGoogle className="text-7xl mx-auto" />
+            </div>
             <h5 className="text-xl text-center mt-3 font-semibold tracking-tight text-gray-900">
               SEO
             </h5>
@@ -82,8 +88,9 @@ const Service = () => {
           </Card>
 
           <Card className="cardShadow">
-            <FaInstagram className="text-7xl mx-auto" />
-
+            <div className="service-icon w-28 h-24 flex justify-center items-center mx-auto">
+              <FaInstagram className="text-7xl mx-auto" />
+            </div>
             <h5 className="text-xl text-center mt-3 font-semibold tracking-tight text-gray-900">
               Social Media Marketing
             </h5>
@@ -95,8 +102,9 @@ const Service = () => {
           </Card>
 
           <Card className="cardShadow">
-            <IoAnalyticsOutline className="text-7xl mx-auto" />
-
+            <div className="service-icon w-28 h-24 flex justify-center items-center mx-auto">
+              <IoAnalyticsOutline className="text-7xl mx-auto" />
+            </div>
             <h5 className="text-xl text-center mt-3 font-semibold tracking-tight text-gray-900">
               Data Scraping
             </h5>

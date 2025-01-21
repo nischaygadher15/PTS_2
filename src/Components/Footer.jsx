@@ -6,8 +6,8 @@ import {
   IoLocationOutline,
   IoLogoFacebook,
 } from "react-icons/io5";
-import { MdOutlineEmail } from "react-icons/md";
 import { NavLink } from "react-router-dom";
+import "../App.css";
 
 const Footer = () => {
   let footLinkClass =
@@ -106,9 +106,15 @@ const Footer = () => {
 
         {/* Social Media Icons */}
         <div className="text-white flex justify-center items-center gap-9 text-5xl py-12 ">
-          <FaInstagram />
-          <IoLogoFacebook />
-          <FaLinkedin />
+          <div className="media-icon w-20 h-20 flex justify-center items-center">
+            <FaInstagram />
+          </div>
+          <div className="media-icon w-20 h-20 flex justify-center items-center">
+            <IoLogoFacebook />
+          </div>
+          <div className="media-icon w-20 h-20 flex justify-center items-center">
+            <FaLinkedin />
+          </div>
         </div>
 
         {/* Copyright */}

@@ -1,8 +1,9 @@
 1. loader on images & page render, lazy loading => Loader Comp.
 
 2. responsive website => tailwind
+-------------------------------------------------------
 
-3. bottom2top button => comp.
+DONE => 3. bottom2top button => comp.
 
 4. Hydration Effect => web/gpt
 

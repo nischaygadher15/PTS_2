@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Navbar from "../Components/navbar";
 import Footer from "../Components/Footer";
 import Bottom2Top from "../Components/Bottom2Top";
+import "../App.css";
 
 const Layout = ({ children }) => {
   //Bottom to top Button Functionality
@@ -13,7 +14,12 @@ const Layout = ({ children }) => {
     else setScrollY(false);
   };
 
-  let handleB2T = () => (webpage.current.scrollTop = 0);
+  let handleB2T = () => {
+    webpage.current.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   useEffect(() => {
     webpage.current.addEventListener("scroll", handleScroll);
@@ -23,12 +29,16 @@ const Layout = ({ children }) => {
 
   return (
     <div
-      className="w-screen h-screen overflow-x-hidden flex flex-col items-center"
+      className="w-screen h-screen overflow-x-hidden overflow-y-auto flex flex-col items-center"
       ref={webpage}
     >
       <Navbar />
       <main className="pt-24 flex flex-col items-center">{children}</main>
-      {scrollY && <Bottom2Top handler={handleB2T} />}
+      {scrollY && (
+        <div className="absolute bottom-7 right-10">
+          <Bottom2Top handler={handleB2T} />
+        </div>
+      )}
       <Footer />
     </div>
   );
