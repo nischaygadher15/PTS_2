@@ -97,8 +97,8 @@ const Home = () => {
   return (
     <>
       {/* Hero Section */}
-      {/* <section className="px-10 py-24 max-w-screen-sm min-h-screen md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl"> */}
       <section className="px-10 py-24 max-w-screen-sm min-h-screen md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl">
+        {/* <section className="px-10 py-24 w-screen"> */}
         <div className="flex gap-x-20 text-[#8e8f87] text-lg">
           <div className="w-1/2 flex flex-col gap-y-3">
             <p className="text-[#8493FF] font-semibold">WE ARE</p>
