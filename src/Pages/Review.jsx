@@ -1,13 +1,9 @@
-import React, { useEffect, useId, useRef, useState } from "react";
+import React, { useEffect, useId, useState } from "react";
 import { Carousel } from "flowbite-react";
 import "../App.css";
 import opinions from "../Data/CustomerOpinions";
 import CustomerCard from "../Components/CustomerCard";
-import {
-  RiArrowLeftWideFill,
-  RiArrowLeftWideLine,
-  RiArrowRightWideFill,
-} from "react-icons/ri";
+import { RiArrowLeftWideFill, RiArrowRightWideFill } from "react-icons/ri";
 
 const Review = () => {
   // Unique key for components
@@ -78,7 +74,7 @@ const Review = () => {
       window?.removeEventListener("resize", resizeWindow);
     };
   }, []);
-  useEffect(() => console.log(customers), [customers]);
+  // useEffect(() => console.log(customers), [customers]);
 
   useEffect(() => {
     createCusArray(winSize);
@@ -87,7 +83,7 @@ const Review = () => {
   return (
     <>
       {/* Happy Clients Works */}
-      <section className="px-6 sm:px-10 py-24 min-h-screen w-full md:max-w-[900px] lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl">
+      <section className="px-6 sm:px-10 py-24 min-h-screen w-screen md:max-w-[900px] lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl">
         <div className="w-full lg:w-1/2 text-black font-semibold text-lg mb-10">
           <span className="text-4xl sm:text-5xl font-semibold">
             Happy Clients Works

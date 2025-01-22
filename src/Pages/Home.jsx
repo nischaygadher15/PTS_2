@@ -57,6 +57,7 @@ const Home = () => {
   };
 
   //Set to all in beginning
+
   useEffect(() => {
     handleTabClick("tab-0");
     filterProjects("all");

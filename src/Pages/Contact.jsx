@@ -1,36 +1,46 @@
-import React, { useRef } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { Button, Textarea, TextInput } from "flowbite-react";
 import "../App.css";
 import { useForm } from "react-hook-form";
+import { AppContext } from "../Context/AppContext";
+import { toast } from "react-toastify";
 
 const Contact = () => {
   const contactForm = useRef(null);
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
+  let { isLoading, setLoading } = useContext(AppContext);
+
   //Submitting form data to backend
   let onSubmit = async (data) => {
-    console.log(data);
-    //API here...
-    let res = await fetch("http://localhost:5000/sentmail", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    });
-    let response = await res.text();
-    // console.log("respnose:", response);
-
-    //Reset Form after sending data..
-    // contactForm.current.reset();
+    try {
+      //API here...
+      let res = await fetch("http://localhost:5000/sentmail", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      let response = await res.text();
+      console.log(data, response);
+      toast.success("Message sent successfully.");
+      reset();
+    } catch (error) {
+      console.log(error.message);
+      console.log(`
+        Status: ${res.status},
+        Status Text: ${res.statusText}`);
+    }
   };
 
   return (
     <>
       {/* Contact Us Form */}
-      <section className="px-6 sm:px-10 py-24 min-h-screen w-full md:max-w-[900px] lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl">
+      <section className="px-6 sm:px-10 py-24 min-h-screen w-screen md:max-w-[900px] lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl">
         <div className="w-full md:w-1/2 text-black font-semibold text-lg mb-10">
           <span className="text-4xl sm:text-5xl font-semibold">Contact Us</span>
           <div className="flex items-center mt-3">

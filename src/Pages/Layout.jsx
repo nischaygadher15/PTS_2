@@ -5,6 +5,8 @@ import Bottom2Top from "../Components/Bottom2Top";
 import "../App.css";
 import Loader from "../Components/Loader";
 import { AppContext } from "../Context/AppContext";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Layout = ({ children }) => {
   //Bottom to top Button Functionality
@@ -24,7 +26,7 @@ const Layout = ({ children }) => {
   };
 
   useEffect(() => {
-    webpage.current.addEventListener("scroll", handleScroll);
+    webpage.current?.addEventListener("scroll", handleScroll);
 
     return () => webpage.current?.removeEventListener("scroll", handleScroll);
   }, []);
@@ -36,26 +38,37 @@ const Layout = ({ children }) => {
     pageLoading();
   }, []);
 
+  if (isLoading) {
+    return <Loader />;
+  }
+
   return (
     <div
       className="max-w-screen min-h-screen overflow-x-hidden flex flex-col items-center"
       ref={webpage}
     >
-      {isLoading && <Loader />}
-      {!isLoading && (
-        <>
-          <Navbar />
-          <main className="max-w-full pt-24 flex flex-col items-center">
-            {children}
-          </main>
-          {scrollY && (
-            <div className="absolute bottom-7 right-10">
-              <Bottom2Top handler={handleB2T} />
-            </div>
-          )}
-          <Footer />
-        </>
+      <ToastContainer
+        position="bottom-left"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable={false}
+        pauseOnHover
+        theme="light"
+      />
+      <Navbar />
+      <main className="max-w-full pt-24 flex flex-col items-center">
+        {children}
+      </main>
+      {scrollY && (
+        <div className="absolute bottom-7 right-10">
+          <Bottom2Top handler={handleB2T} />
+        </div>
       )}
+      <Footer />
     </div>
   );
 };
