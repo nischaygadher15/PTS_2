@@ -36,15 +36,16 @@ const Layout = ({ children }) => {
   let { isLoading, setLoading } = useContext(AppContext);
 
   useEffect(() => {
-    let start = Date.now();
-    let handleLoad = () => {
-      let end = Date.now();
-      if (end - start < 2000) {
-        setTimeout(() => setLoading(false), 2000);
-      } else {
-        setLoading(false);
-      }
-    };
+    // let start = Date.now();
+    // let handleLoad = () => {
+    //   let end = Date.now();
+    //   if (end - start < 2000) {
+    //     setTimeout(() => setLoading(false), 2000);
+    //   } else {
+    //     setLoading(false);
+    //   }
+    // };
+    setTimeout(() => setLoading(false), 2000);
     window.addEventListener("load", handleLoad);
 
     return () => window.removeEventListener("load", handleLoad);
