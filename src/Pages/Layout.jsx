@@ -1,9 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import Bottom2Top from "../Components/Bottom2Top";
 import "../App.css";
 import Loader from "../Components/Loader";
+import { AppContext } from "../Context/AppContext";
 
 const Layout = ({ children }) => {
   //Bottom to top Button Functionality
@@ -25,7 +26,14 @@ const Layout = ({ children }) => {
   useEffect(() => {
     webpage.current.addEventListener("scroll", handleScroll);
 
-    return () => webpage?.current.removeEventListener("scroll", handleScroll);
+    return () => webpage.current?.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  //Loader Context
+
+  let { isLoading, pageLoading } = useContext(AppContext);
+  useEffect(() => {
+    pageLoading();
   }, []);
 
   return (
@@ -33,17 +41,21 @@ const Layout = ({ children }) => {
       className="max-w-screen min-h-screen overflow-x-hidden flex flex-col items-center"
       ref={webpage}
     >
-      <Loader />
-      <Navbar />
-      <main className="max-w-full pt-24 flex flex-col items-center">
-        {children}
-      </main>
-      {scrollY && (
-        <div className="absolute bottom-7 right-10">
-          <Bottom2Top handler={handleB2T} />
-        </div>
+      {isLoading && <Loader />}
+      {!isLoading && (
+        <>
+          <Navbar />
+          <main className="max-w-full pt-24 flex flex-col items-center">
+            {children}
+          </main>
+          {scrollY && (
+            <div className="absolute bottom-7 right-10">
+              <Bottom2Top handler={handleB2T} />
+            </div>
+          )}
+          <Footer />
+        </>
       )}
-      <Footer />
     </div>
   );
 };

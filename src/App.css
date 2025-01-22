@@ -68,7 +68,8 @@
 }
 
 #loaderBar {
-  animation: loading 3s linear infinite;
+  animation: loading 2s linear infinite;
+  animation-delay: 100ms;
 }
 
 @keyframes loading {

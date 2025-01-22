@@ -14,43 +14,11 @@ import { AppContext } from "../Context/AppContext";
 const Home = () => {
   // Unique key for components
   let key = useId();
-  let store = useContext(AppContext);
 
   //Counters
   let [count1, setCount1] = useState(false);
 
   let startCounters = () => setCount1(true);
-
-  // Intersectino Observer
-  const counterObserver = useRef(null);
-
-  useEffect(() => {
-    // Define Observer
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            startCounters(); // Call the callback when the element is in the viewport
-          }
-        });
-      },
-      {
-        threshold: 0.1, // Adjust this value to control when the callback is fired
-      }
-    );
-
-    // Check wheather component exists or not
-    if (counterObserver.current) {
-      observer.observe(counterObserver.current);
-    }
-
-    // Cleanup function to unobserve the element when the component unmounts
-    return () => {
-      if (counterObserver.current) {
-        observer.unobserve(counterObserver.current);
-      }
-    };
-  }, []);
 
   //Work Tab Functionality
   let [filtered, setFiltered] = useState([]);
@@ -58,11 +26,9 @@ const Home = () => {
   let handleTabClick = (t) => {
     let tabButtons = document.getElementById("tabButtons");
     Array.from(tabButtons.children).forEach((b, inx) => {
-      // b.style.marginTop = "0px";
       b.style.transform = "translateY(0px)";
     });
 
-    // document.getElementById(t).style.marginTop = "-20px";
     document.getElementById(t).style.transform = "translateY(-20px)";
 
     switch (t) {
@@ -94,10 +60,38 @@ const Home = () => {
   useEffect(() => {
     handleTabClick("tab-0");
     filterProjects("all");
-    console.log(store);
   }, []);
 
-  // useEffect(() => console.log(filtered), [filtered]);
+  // Intersectino Observer
+  const counterObserver = useRef(null);
+
+  useEffect(() => {
+    // Define Observer
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            startCounters(); // Call the callback when the element is in the viewport
+          }
+        });
+      },
+      {
+        threshold: 0.1, // Adjust this value to control when the callback is fired
+      }
+    );
+
+    // Check wheather component exists or not
+    if (counterObserver.current) {
+      observer.observe(counterObserver.current);
+    }
+
+    // Cleanup function to unobserve the element when the component unmounts
+    return () => {
+      if (counterObserver.current) {
+        observer.unobserve(counterObserver.current);
+      }
+    };
+  }, []);
 
   return (
     <>
