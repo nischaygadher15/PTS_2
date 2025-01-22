@@ -45,7 +45,10 @@ const Layout = ({ children }) => {
     //     setLoading(false);
     //   }
     // };
-    setTimeout(() => setLoading(false), 2000);
+    // window.addEventListener("load", handleLoad);
+    let handleLoad = () => {
+      setTimeout(() => setLoading(false), 2000);
+    };
     window.addEventListener("load", handleLoad);
 
     return () => window.removeEventListener("load", handleLoad);
