@@ -5,10 +5,11 @@ import Bottom2Top from "../Components/Bottom2Top";
 import "../App.css";
 import Loader from "../Components/Loader";
 import { AppContext } from "../Context/AppContext";
-import { ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Layout = ({ children }) => {
+  let start = Date.now();
   //Bottom to top Button Functionality
   let [scrollY, setScrollY] = useState(false);
   let webpage = useRef(null);
@@ -26,9 +27,13 @@ const Layout = ({ children }) => {
   };
 
   useEffect(() => {
-    webpage.current?.addEventListener("scroll", handleScroll);
-
-    return () => webpage.current?.removeEventListener("scroll", handleScroll);
+    let addScroll = () =>
+      webpage.current?.addEventListener("scroll", handleScroll);
+    window.addEventListener("load", addScroll);
+    return () => {
+      window.removeEventListener("load", addScroll);
+      webpage.current?.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   //Loader Context
@@ -36,22 +41,12 @@ const Layout = ({ children }) => {
   let { isLoading, setLoading } = useContext(AppContext);
 
   useEffect(() => {
-    // let start = Date.now();
-    // let handleLoad = () => {
-    //   let end = Date.now();
-    //   if (end - start < 2000) {
-    //     setTimeout(() => setLoading(false), 2000);
-    //   } else {
-    //     setLoading(false);
-    //   }
-    // };
-    // window.addEventListener("load", handleLoad);
-    let handleLoad = () => {
+    let end = Date.now();
+    if (end - start < 2000) {
       setTimeout(() => setLoading(false), 2000);
-    };
-    window.addEventListener("load", handleLoad);
-
-    return () => window.removeEventListener("load", handleLoad);
+    } else {
+      setLoading(false);
+    }
   }, []);
 
   if (isLoading) {

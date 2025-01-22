@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useId, useRef, useState } from "react";
+import React, { useEffect, useId, useRef, useState } from "react";
 import banner1 from "../assets/images/PTSWEBSITELAUNCH.jpeg";
 import { NavLink } from "react-router-dom";
 import "../App.css";
@@ -9,7 +9,6 @@ import About from "./About";
 import Service from "./Service";
 import Review from "./Review";
 import Contact from "./Contact";
-import { AppContext } from "../Context/AppContext";
 
 const Home = () => {
   // Unique key for components
@@ -23,14 +22,15 @@ const Home = () => {
   //Work Tab Functionality
   let [filtered, setFiltered] = useState([]);
 
-  let handleTabClick = (t) => {
-    let tabButtons = document.getElementById("tabButtons");
+  let tabButtons = useRef(null);
 
-    Array.from(tabButtons.children).forEach((b, inx) => {
+  let handleTabClick = (t) => {
+    Array.from(tabButtons.current.children).forEach((b, inx) => {
       b.style.transform = "translateY(0px)";
     });
 
-    document.getElementById(t).style.transform = "translateY(-20px)";
+    if (document.getElementById(t))
+      document.getElementById(t).style.transform = "translateY(-20px)";
 
     switch (t) {
       case "tab-1":
@@ -60,13 +60,8 @@ const Home = () => {
   //Set to all in beginning
 
   useEffect(() => {
-    let handleStart = () => {
-      handleTabClick("tab-0");
-      filterProjects("all");
-    };
-    window.addEventListener("load", handleStart);
-
-    return () => window.removeEventListener("load", handleStart);
+    handleTabClick("tab-0");
+    filterProjects("all");
   }, []);
 
   // Intersectino Observer
@@ -158,7 +153,7 @@ const Home = () => {
             <div
               // className="flex justify-between md:justify-center items-center md:gap-8"
               className="grid grid-cols-2 gap-y-7 sm:grid-cols-4 grid-rows-2  sm:grid-rows-1 gap-x-5 md:gap-8 text-base"
-              id="tabButtons"
+              ref={tabButtons}
               onClick={(e) => handleTabClick(e.target.id)}
             >
               <button
