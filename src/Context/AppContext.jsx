@@ -8,25 +8,13 @@ let ContextProvider = ({ children }) => {
   //App Store
   let [isLoading, setLoading] = useState(true);
 
-  let pageLoading = () => {
-    let start = Date.now();
-    window.addEventListener("load", () => {
-      let end = Date.now();
-      if (end - start < 2000) {
-        setTimeout(() => setLoading(false), 2000);
-      } else {
-        setLoading(false);
-      }
-    });
-  };
-
   useEffect(() => {
     if (isLoading) document.body.style.overflow = "hidden";
     else document.body.style.overflow = "auto";
   }, [isLoading]);
 
   return (
-    <AppContext.Provider value={{ isLoading, setLoading, pageLoading }}>
+    <AppContext.Provider value={{ isLoading, setLoading }}>
       {children}
     </AppContext.Provider>
   );

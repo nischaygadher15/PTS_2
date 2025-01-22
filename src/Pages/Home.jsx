@@ -25,7 +25,8 @@ const Home = () => {
 
   let handleTabClick = (t) => {
     let tabButtons = document.getElementById("tabButtons");
-    Array.from(tabButtons.children).forEach((b, inx) => {
+
+    Array.from(tabButtons?.childNodes).forEach((b, inx) => {
       b.style.transform = "translateY(0px)";
     });
 

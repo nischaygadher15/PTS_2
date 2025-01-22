@@ -33,9 +33,21 @@ const Layout = ({ children }) => {
 
   //Loader Context
 
-  let { isLoading, pageLoading } = useContext(AppContext);
+  let { isLoading, setLoading } = useContext(AppContext);
+
   useEffect(() => {
-    pageLoading();
+    let start = Date.now();
+    let handleLoad = () => {
+      let end = Date.now();
+      if (end - start < 2000) {
+        setTimeout(() => setLoading(false), 2000);
+      } else {
+        setLoading(false);
+      }
+    };
+    window.addEventListener("load", handleLoad);
+
+    return () => window.removeEventListener("load", handleLoad);
   }, []);
 
   if (isLoading) {
