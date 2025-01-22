@@ -12,12 +12,19 @@ const Contact = () => {
   } = useForm();
 
   //Submitting form data to backend
-  let onSubmit = (data) => {
+  let onSubmit = async (data) => {
     console.log(data);
     //API here...
+    let res = await fetch("http://localhost:5000/sentmail", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+    let response = await res.text();
+    // console.log("respnose:", response);
 
     //Reset Form after sending data..
-    contactForm.current.reset();
+    // contactForm.current.reset();
   };
 
   return (

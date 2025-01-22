@@ -8,9 +8,9 @@ const About = () => {
   return (
     <>
       {/* Company Details */}
-      <section className="px-10 py-24 max-w-screen-sm min-h-screen md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl">
-        <div className="flex gap-x-20 text-[#8e8f87] text-lg">
-          <div className="w-1/2 flex justify-center items-center">
+      <section className="px-6 sm:px-10 py-24 min-h-screen max-w-full md:max-w-[900px] lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl">
+        <div className="flex flex-col md:flex-row gap-y-20 md:gap-y-0 gap-x-10 lg:gap-x-20 text-[#8e8f87] text-lg">
+          <div className="w-full md:w-1/2 order-2 md:order-1 flex justify-center items-center">
             <img
               src={banner2}
               alt="PTS Banner"
@@ -21,9 +21,11 @@ const About = () => {
             />
           </div>
 
-          <div className="w-1/2 flex flex-col gap-y-5">
+          <div className="w-full md:w-1/2 order-1 md:order-2 flex flex-col gap-y-5">
             <div className="text-black font-semibold">
-              <span className="text-5xl font-semibold">Company Details</span>
+              <span className="text-4xl sm:text-5xl text-center md:text-lef font-semibold">
+                Company Details
+              </span>
               <div className="flex items-center mt-3">
                 <span className="bg-[#8490FF] w-4 h-4 rounded-full"></span>
                 <span className="bg-[#8490FF] h-1 w-52"></span>
@@ -103,7 +105,7 @@ const About = () => {
 
             <NavLink
               to="/contact"
-              className="max-w-44 mt-3 py-4 text-center bg-[#62BDFC] text-white font-semibold hover:shadow-xl hover:shadow-[#b8ddf7] bgGradient"
+              className="w-36 md:w-44 mx-auto mt-3 py-2 md:py-4 text-center bg-[#62BDFC] text-white font-semibold hover:shadow-xl hover:shadow-[#b8ddf7] bgGradient"
             >
               CONTACT US
             </NavLink>

@@ -97,12 +97,12 @@ const Home = () => {
   return (
     <>
       {/* Hero Section */}
-      <section className="px-10 py-24 max-w-screen-sm min-h-screen md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl">
+      <section className="px-6 sm:px-10 py-24 min-h-screen max-w-full md:max-w-[900px] lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl">
         {/* <section className="px-10 py-24 w-screen"> */}
-        <div className="flex gap-x-20 text-[#8e8f87] text-lg">
-          <div className="w-1/2 flex flex-col gap-y-3">
+        <div className="w-full flex flex-col gap-y-12 md:gap-y-0 md:flex-row gap-x-10 lg:gap-x-20 text-[#8e8f87] text-md lg:text-lg">
+          <div className="w-full md:w-1/2 flex flex-col gap-y-3">
             <p className="text-[#8493FF] font-semibold">WE ARE</p>
-            <p className="text-6xl text-[#000A2D] font-bold uppercase leading-tight">
+            <p className="text-4xl sm:text-5xl lg:text-6xl text-center md:text-left text-[#000A2D] font-bold uppercase lg:leading-tight">
               Prahya Tech Services
             </p>
             <p>
@@ -114,13 +114,13 @@ const Home = () => {
 
             <NavLink
               to="/contact"
-              className="max-w-44 mt-3 py-4 text-center bg-[#62BDFC] text-white font-semibold hover:shadow-xl hover:shadow-[#b8ddf7] bgGradient"
+              className="w-36 md:w-44 mx-auto mt-3 py-2 md:py-4 text-center bg-[#62BDFC] text-white font-semibold hover:shadow-xl hover:shadow-[#b8ddf7] bgGradient"
             >
               CONTACT US
             </NavLink>
           </div>
-          <div className="w-1/2">
-            <img src={banner1} alt="PTS Banner" className="h-full" />
+          <div className="w-full md:w-1/2 flex items-center">
+            <img src={banner1} alt="PTS Banner" className="h-4/5 lg:h-full" />
           </div>
         </div>
       </section>
@@ -129,11 +129,13 @@ const Home = () => {
       <About />
 
       {/* Latest Works */}
-      <section className="px-10 py-24 max-w-screen-sm min-h-screen md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl">
+      <section className="px-6 sm:px-10 py-24 min-h-screen max-w-full md:max-w-[900px] lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl">
         <div className="text-[#8e8f87] text-lg">
-          <div className="w-1/2">
+          <div className="w-full md:w-1/2">
             <div className="text-black font-semibold">
-              <span className="text-5xl font-semibold">Latest Works</span>
+              <span className="text-4xl sm:text-5xl font-semibold">
+                Latest Works
+              </span>
               <div className="flex items-center mt-3">
                 <span className="bg-[#8490FF] w-4 h-4 rounded-full"></span>
                 <span className="bg-[#8490FF] h-1 w-52"></span>
@@ -153,7 +155,7 @@ const Home = () => {
               onClick={(e) => handleTabClick(e.target.id)}
             >
               <button
-                className="py-3 rounded-md px-8 text-center bg-[#62BDFC] text-white font-semibold hover:shadow-xl 
+                className="px-5 md:px-8 py-2 md:py-3 rounded-md text-center bg-[#62BDFC] text-white font-semibold hover:shadow-xl 
               hover:shadow-[#b8ddf7] uppercase text-nowrap bgGradient tabBtn"
                 id="tab-0"
               >
@@ -161,7 +163,7 @@ const Home = () => {
               </button>
 
               <button
-                className="py-3 rounded-md px-8 text-center bg-[#62BDFC] text-white font-semibold hover:shadow-xl 
+                className="px-5 md:px-8 py-2 md:py-3 rounded-md text-center bg-[#62BDFC] text-white font-semibold hover:shadow-xl 
               hover:shadow-[#b8ddf7] uppercase text-nowrap bgGradient tabBtn"
                 id="tab-1"
               >
@@ -169,7 +171,7 @@ const Home = () => {
               </button>
 
               <button
-                className="py-3 rounded-md px-8 text-center bg-[#62BDFC] text-white font-semibold hover:shadow-xl 
+                className="px-5 md:px-8 py-2 md:py-3 rounded-md text-center bg-[#62BDFC] text-white font-semibold hover:shadow-xl 
               hover:shadow-[#b8ddf7] uppercase text-nowrap bgGradient tabBtn"
                 id="tab-2"
               >
@@ -177,7 +179,7 @@ const Home = () => {
               </button>
 
               <button
-                className="py-3 rounded-md px-8 text-center bg-[#62BDFC] text-white font-semibold hover:shadow-xl 
+                className="px-5 md:px-8 py-2 md:py-3 rounded-md text-center bg-[#62BDFC] text-white font-semibold hover:shadow-xl 
               hover:shadow-[#b8ddf7] uppercase text-nowrap bgGradient tabBtn"
                 id="tab-3"
               >
@@ -186,7 +188,7 @@ const Home = () => {
             </div>
 
             {/* Tab Content */}
-            <div className="pt-16 grid grid-cols-3 gap-6">
+            <div className="pt-16 grid grid-cols-2 md:grid-cols-3 gap-6">
               {filtered &&
                 filtered.map((i, inx) => (
                   <div

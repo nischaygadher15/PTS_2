@@ -29,11 +29,13 @@ const Layout = ({ children }) => {
 
   return (
     <div
-      className="w-screen h-screen overflow-x-hidden overflow-y-auto flex flex-col items-center"
+      className="max-w-screen min-h-screen overflow-x-hidden overflow-y-auto flex flex-col items-center"
       ref={webpage}
     >
       <Navbar />
-      <main className="pt-24 flex flex-col items-center">{children}</main>
+      <main className="max-w-full pt-24 flex flex-col items-center">
+        {children}
+      </main>
       {scrollY && (
         <div className="absolute bottom-7 right-10">
           <Bottom2Top handler={handleB2T} />

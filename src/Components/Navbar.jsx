@@ -22,7 +22,7 @@ const Navbar = () => {
   const handleClose = () => setIsOpen(false);
 
   return (
-    <nav className="z-50 fixed top-0 left-0 w-screen h-24 bg-[#F9F9FF] px-10 flex items-center justify-between">
+    <nav className="z-50 fixed top-0 left-0 w-screen h-24 bg-[#F9F9FF] px-6 sm:px-10 flex items-center justify-between">
       {/* Logo */}
       <div>
         <img
