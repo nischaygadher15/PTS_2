@@ -1,7 +1,7 @@
 1. loader on images & page render, lazy loading => Loader Comp.
 
-2. responsive website => tailwind
 -------------------------------------------------------
+2. responsive website => tailwind
 
 DONE => 3. bottom2top button => comp.
 
