@@ -26,7 +26,7 @@ const Home = () => {
   let handleTabClick = (t) => {
     let tabButtons = document.getElementById("tabButtons");
 
-    Array.from(tabButtons?.childNodes).forEach((b, inx) => {
+    Array.from(tabButtons.children).forEach((b, inx) => {
       b.style.transform = "translateY(0px)";
     });
 
@@ -60,8 +60,13 @@ const Home = () => {
   //Set to all in beginning
 
   useEffect(() => {
-    handleTabClick("tab-0");
-    filterProjects("all");
+    let handleStart = () => {
+      handleTabClick("tab-0");
+      filterProjects("all");
+    };
+    window.addEventListener("load", handleStart);
+
+    return () => window.removeEventListener("load", handleStart);
   }, []);
 
   // Intersectino Observer
