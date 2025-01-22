@@ -66,3 +66,16 @@
     border-radius: 56% 44% 70% 30% / 30% 54% 46% 70%;
   }
 }
+
+#loaderBar {
+  animation: loading 3s linear infinite;
+}
+
+@keyframes loading {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}

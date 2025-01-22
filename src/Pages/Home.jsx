@@ -1,4 +1,4 @@
-import React, { useEffect, useId, useRef, useState } from "react";
+import React, { useContext, useEffect, useId, useRef, useState } from "react";
 import banner1 from "../assets/images/PTSWEBSITELAUNCH.jpeg";
 import { NavLink } from "react-router-dom";
 import "../App.css";
@@ -9,10 +9,12 @@ import About from "./About";
 import Service from "./Service";
 import Review from "./Review";
 import Contact from "./Contact";
+import { AppContext } from "../Context/AppContext";
 
 const Home = () => {
   // Unique key for components
   let key = useId();
+  let store = useContext(AppContext);
 
   //Counters
   let [count1, setCount1] = useState(false);
@@ -92,6 +94,7 @@ const Home = () => {
   useEffect(() => {
     handleTabClick("tab-0");
     filterProjects("all");
+    console.log(store);
   }, []);
 
   // useEffect(() => console.log(filtered), [filtered]);

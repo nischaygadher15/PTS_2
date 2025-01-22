@@ -3,6 +3,7 @@ import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import Bottom2Top from "../Components/Bottom2Top";
 import "../App.css";
+import Loader from "../Components/Loader";
 
 const Layout = ({ children }) => {
   //Bottom to top Button Functionality
@@ -24,14 +25,15 @@ const Layout = ({ children }) => {
   useEffect(() => {
     webpage.current.addEventListener("scroll", handleScroll);
 
-    return () => webpage.current.removeEventListener("scroll", handleScroll);
+    return () => webpage?.current.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <div
-      className="max-w-screen min-h-screen overflow-x-hidden overflow-y-auto flex flex-col items-center"
+      className="max-w-screen min-h-screen overflow-x-hidden flex flex-col items-center"
       ref={webpage}
     >
+      <Loader />
       <Navbar />
       <main className="max-w-full pt-24 flex flex-col items-center">
         {children}

@@ -75,7 +75,7 @@ const Review = () => {
     window.addEventListener("resize", resizeWindow);
 
     return () => {
-      window.removeEventListener("resize", resizeWindow);
+      window?.removeEventListener("resize", resizeWindow);
     };
   }, []);
   useEffect(() => console.log(customers), [customers]);
