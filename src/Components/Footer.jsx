@@ -26,8 +26,8 @@ const Footer = () => {
   ];
   return (
     <footer className="w-screen flex justify-center bg-[#000a2d]">
-      <div className="px-10 py-24 max-w-screen-sm min-h-screen md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl ">
-        <div className="grid grid-cols-4 gap-20">
+      <div className="px-6 sm:px-10 py-24 min-h-screen max-w-full md:max-w-[900px] lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-20">
           {/* About */}
           <div>
             <p className="text-lg mb-10 font-medium text-white">About</p>
@@ -97,7 +97,7 @@ const Footer = () => {
                   className={`${footLinkClass} flex flex-wrap items-center`}
                 >
                   <CiMail />
-                  <span className="">prahyatechservices@gmail.com</span>
+                  <span className="">prahyatechservices @gmail.com</span>
                 </a>
               </li>
             </ul>
@@ -105,14 +105,14 @@ const Footer = () => {
         </div>
 
         {/* Social Media Icons */}
-        <div className="text-white flex justify-center items-center gap-9 text-5xl py-12 ">
-          <div className="media-icon w-20 h-20 flex justify-center items-center">
+        <div className="text-white flex justify-center items-center gap-9 text-4xl md:text-5xl py-12 ">
+          <div className="media-icon w-16 h-16  md:w-20 md:h-20 flex justify-center items-center">
             <FaInstagram />
           </div>
-          <div className="media-icon w-20 h-20 flex justify-center items-center">
+          <div className="media-icon w-16 h-16  md:w-20 md:h-20 flex justify-center items-center">
             <IoLogoFacebook />
           </div>
-          <div className="media-icon w-20 h-20 flex justify-center items-center">
+          <div className="media-icon w-16 h-16  md:w-20 md:h-20 flex justify-center items-center">
             <FaLinkedin />
           </div>
         </div>

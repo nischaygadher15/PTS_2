@@ -56,10 +56,12 @@ const Home = () => {
   let handleTabClick = (t) => {
     let tabButtons = document.getElementById("tabButtons");
     Array.from(tabButtons.children).forEach((b, inx) => {
-      b.style.marginTop = "0px";
+      // b.style.marginTop = "0px";
+      b.style.transform = "translateY(0px)";
     });
 
-    document.getElementById(t).style.marginTop = "-20px";
+    // document.getElementById(t).style.marginTop = "-20px";
+    document.getElementById(t).style.transform = "translateY(-20px)";
 
     switch (t) {
       case "tab-1":
@@ -130,7 +132,7 @@ const Home = () => {
 
       {/* Latest Works */}
       <section className="px-6 sm:px-10 py-24 min-h-screen max-w-full md:max-w-[900px] lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl">
-        <div className="text-[#8e8f87] text-lg">
+        <div className="max-w-full text-[#8e8f87] text-lg">
           <div className="w-full md:w-1/2">
             <div className="text-black font-semibold">
               <span className="text-4xl sm:text-5xl font-semibold">
@@ -150,13 +152,14 @@ const Home = () => {
           <div className="w-full">
             {/* Tab Button */}
             <div
-              className="flex justify-center items-center gap-8"
+              // className="flex justify-between md:justify-center items-center md:gap-8"
+              className="grid grid-cols-2 gap-y-7 sm:grid-cols-4 grid-rows-2  sm:grid-rows-1 gap-x-5 md:gap-8 text-base"
               id="tabButtons"
               onClick={(e) => handleTabClick(e.target.id)}
             >
               <button
-                className="px-5 md:px-8 py-2 md:py-3 rounded-md text-center bg-[#62BDFC] text-white font-semibold hover:shadow-xl 
-              hover:shadow-[#b8ddf7] uppercase text-nowrap bgGradient tabBtn"
+                className="px-4 md:px-8 py-2 md:py-3 rounded-md text-center bg-[#62BDFC] text-white font-semibold hover:shadow-xl 
+              hover:shadow-[#b8ddf7] uppercase text-wrap bgGradient tabBtn"
                 id="tab-0"
               >
                 All
@@ -164,7 +167,7 @@ const Home = () => {
 
               <button
                 className="px-5 md:px-8 py-2 md:py-3 rounded-md text-center bg-[#62BDFC] text-white font-semibold hover:shadow-xl 
-              hover:shadow-[#b8ddf7] uppercase text-nowrap bgGradient tabBtn"
+              hover:shadow-[#b8ddf7] uppercase text-wrap bgGradient tabBtn"
                 id="tab-1"
               >
                 WEBSITE
@@ -172,7 +175,7 @@ const Home = () => {
 
               <button
                 className="px-5 md:px-8 py-2 md:py-3 rounded-md text-center bg-[#62BDFC] text-white font-semibold hover:shadow-xl 
-              hover:shadow-[#b8ddf7] uppercase text-nowrap bgGradient tabBtn"
+              hover:shadow-[#b8ddf7] uppercase text-wrap bgGradient tabBtn"
                 id="tab-2"
               >
                 Graphic Design
@@ -180,7 +183,7 @@ const Home = () => {
 
               <button
                 className="px-5 md:px-8 py-2 md:py-3 rounded-md text-center bg-[#62BDFC] text-white font-semibold hover:shadow-xl 
-              hover:shadow-[#b8ddf7] uppercase text-nowrap bgGradient tabBtn"
+              hover:shadow-[#b8ddf7] uppercase text-wrap bgGradient tabBtn"
                 id="tab-3"
               >
                 Social Media
@@ -188,7 +191,7 @@ const Home = () => {
             </div>
 
             {/* Tab Content */}
-            <div className="pt-16 grid grid-cols-2 md:grid-cols-3 gap-6">
+            <div className="pt-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
               {filtered &&
                 filtered.map((i, inx) => (
                   <div
@@ -219,11 +222,11 @@ const Home = () => {
 
       {/* Numbers Section */}
       <section
-        className="py-24 w-screen text-white text-center flex justify-evenly bgGradient"
+        className="py-24 w-screen text-white text-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-11 sm:gap-6 bgGradient"
         ref={counterObserver}
       >
-        <div>
-          <div className="text-5xl font-bold mb-4 flex items-center">
+        <div className="flex flex-col items-center">
+          <div className="text-4xl lg:text-5xl font-bold mb-4 flex flew-row items-center">
             {count1 && (
               <CountUp
                 start={0}
@@ -236,14 +239,11 @@ const Home = () => {
             {!count1 && "2,000"}
             <FaPlus className="pt-2 ps-2 text-4xl" />
           </div>
-          <p className="text-lg font-semibold">Website Completed</p>
-          {/* <Button color="success" onClick={() => setCount1(true)}>
-            Start
-          </Button> */}
+          <p className="text-md lg:text-lg font-semibold">Website Completed</p>
         </div>
 
-        <div>
-          <div className="text-5xl font-bold mb-4 flex items-center">
+        <div className="flex flex-col items-center">
+          <div className="text-4xl lg:text-5xl font-bold mb-4 flex items-center">
             {count1 && (
               <CountUp
                 start={0}
@@ -256,11 +256,11 @@ const Home = () => {
             {!count1 && "6,000"}
             <FaPlus className="pt-2 ps-2 text-4xl" />
           </div>
-          <p className="text-lg font-semibold">Happy Clients</p>
+          <p className="text-md lg:text-lg font-semibold">Happy Clients</p>
         </div>
 
-        <div>
-          <div className="text-5xl font-bold mb-4 flex items-center">
+        <div className="flex flex-col items-center">
+          <div className="text-4xl lg:text-5xl font-bold mb-4 flex items-center">
             {count1 && (
               <CountUp
                 start={0}
@@ -273,11 +273,13 @@ const Home = () => {
             {!count1 && "5,000"}
             <FaPlus className="pt-2 ps-2 text-4xl" />
           </div>
-          <p className="text-lg font-semibold">Grahpic Design Completed</p>
+          <p className="text-md lg:text-lg font-semibold">
+            Grahpic Design Completed
+          </p>
         </div>
 
-        <div>
-          <div className="text-5xl font-bold mb-4 flex items-center">
+        <div className="flex flex-col items-center">
+          <div className="text-4xl lg:text-5xl font-bold mb-4 flex items-center">
             {count1 && (
               <CountUp
                 start={0}
@@ -290,7 +292,9 @@ const Home = () => {
             {!count1 && "3,000"}
             <FaPlus className="pt-2 ps-2 text-4xl" />
           </div>
-          <p className="text-lg font-semibold">SMM Project Completed</p>
+          <p className="text-md lg:text-lg font-semibold">
+            SMM Project Completed
+          </p>
         </div>
       </section>
 
@@ -301,25 +305,30 @@ const Home = () => {
       <Review />
 
       {/* Available for 24/7 */}
-      <section className="py-24 w-screen bg-[#7892FF]">
-        <div className="h-full flex flex-col items-center justify-center gap-6 text-white">
-          <p className="text-7xl">
-            We Are <span className="text-[#A0F669]">Available</span> For 24/7*
-          </p>
-          <p>
-            We offers best Web Design Services, Website Design, Web Development,
-            SEO Marketing Services,Social Media Marketing, PSD to HTML.
-          </p>
+      <div className="w-screen bg-[#7892FF]">
+        <section className="bg-[#7892FF] px-6 sm:px-10 py-24 w-full md:max-w-[900px] lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl">
+          <div className="h-full flex flex-col items-center justify-center gap-6 text-white">
+            <p className="text-5xl md:text-7xl">
+              <span>We Are</span>
+              <span className="text-[#A0F669]"> Available </span>
+              <span>For 24/7*</span>
+            </p>
+            <p>
+              We offers best Web Design Services, Website Design, Web
+              Development, SEO Marketing Services,Social Media Marketing, PSD to
+              HTML.
+            </p>
 
-          <NavLink
-            to="/contact"
-            className="w-44 mt-3 py-4 text-center bg-[rgb(103,230,65)] text-white font-semibold hover:shadow-lg
+            <NavLink
+              to="/contact"
+              className="w-44 mt-3 py-4 text-center bg-[rgb(103,230,65)] text-white font-semibold hover:shadow-lg
              hover:shadow-[rgb(158,241,132)] bgGradient"
-          >
-            CONTACT US
-          </NavLink>
-        </div>
-      </section>
+            >
+              CONTACT US
+            </NavLink>
+          </div>
+        </section>
+      </div>
 
       {/* Contact Us Form */}
       <Contact />

@@ -13,8 +13,8 @@ const Service = () => {
   return (
     <>
       {/* Services Offers */}
-      <section className="px-10 py-24 max-w-screen-sm min-h-screen md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl">
-        <div className="w-1/2 text-[#8e8f87] text-lg">
+      <section className="px-6 sm:px-10 py-24 min-h-screen max-w-full md:max-w-[900px] lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl">
+        <div className="lg:w-1/2 text-[#8e8f87] text-lg">
           <div className="text-black font-semibold">
             <span className="text-5xl font-semibold">Services offers</span>
             <div className="flex items-center mt-3">
@@ -29,7 +29,7 @@ const Service = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-3 gap-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7 lg:gap-10 xl:gap-20">
           <Card className="cardShadow">
             <div className="service-icon w-28 h-24 flex justify-center items-center mx-auto">
               <IoDesktopSharp className="text-7xl" />

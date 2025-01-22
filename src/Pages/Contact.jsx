@@ -30,9 +30,9 @@ const Contact = () => {
   return (
     <>
       {/* Contact Us Form */}
-      <section className="px-10 w-screen min-h-screen py-24 max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl">
-        <div className="w-1/2 text-black font-semibold text-lg mb-10">
-          <span className="text-5xl font-semibold">Contact Us</span>
+      <section className="px-6 sm:px-10 py-24 min-h-screen w-full md:max-w-[900px] lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl">
+        <div className="w-full md:w-1/2 text-black font-semibold text-lg mb-10">
+          <span className="text-4xl sm:text-5xl font-semibold">Contact Us</span>
           <div className="flex items-center mt-3">
             <span className="bg-[#8490FF] w-4 h-4 rounded-full"></span>
             <span className="bg-[#8490FF] h-1 w-52"></span>
@@ -41,7 +41,7 @@ const Contact = () => {
 
         <div className="w-full flex justify-center">
           <form
-            className="w-1/2"
+            className="w-full sm:w-2/3 lg:w-1/2"
             onSubmit={handleSubmit(onSubmit)}
             ref={contactForm}
           >

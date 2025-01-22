@@ -74,8 +74,12 @@ const Navbar = () => {
       </button>
 
       {/* <=================== Drawer ======================> */}
-      <Drawer open={isOpen} position="right" className="w-screen h-screen p-0">
-        <nav className="w-screen h-24 bg-[#F9F9FF] px-10 flex items-center justify-between mb-16">
+      <Drawer
+        open={isOpen}
+        position="right"
+        className="w-screen h-screen overflow-hidden p-0"
+      >
+        <nav className="w-full h-24 bg-[#F9F9FF] px-10 flex items-center justify-between mb-16">
           {/* Logo */}
           <div>
             <img
