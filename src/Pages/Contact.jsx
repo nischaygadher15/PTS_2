@@ -20,7 +20,7 @@ const Contact = () => {
   let onSubmit = async (data) => {
     try {
       //API here...
-      let res = await fetch("http://localhost:5000/sentmail", {
+      let res = await fetch("https://pts2backend.vercel.app/sentmail", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),

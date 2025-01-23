@@ -13,7 +13,13 @@ const Footer = () => {
   let footLinkClass =
     "text-[rgba(255,255,255,0.6)] hover:text-white text-lg flex items-center gap-3";
 
-  let links = ["Home", "About", "Service", "Company Detail", "Contact"];
+  let links = [
+    ["Home", "/"],
+    ["About", "/about"],
+    ["Service", "/service"],
+    ["Company Detail", "/about"],
+    ["Contact", "/contact"],
+  ];
 
   let eleKey = useId();
 
@@ -44,9 +50,9 @@ const Footer = () => {
             <ul className="list-none">
               {links.map((l, inx) => (
                 <li className="mb-3" key={`${eleKey}-links-${inx}`}>
-                  <NavLink to="/" className={footLinkClass}>
+                  <NavLink to={`${l[1]}`} className={footLinkClass}>
                     <FaArrowRight className="text-md" />
-                    {l}
+                    {l[0]}
                   </NavLink>
                 </li>
               ))}
@@ -106,21 +112,45 @@ const Footer = () => {
 
         {/* Social Media Icons */}
         <div className="text-white flex justify-center items-center gap-9 text-4xl md:text-5xl py-12 ">
-          <div className="media-icon w-16 h-16  md:w-20 md:h-20 flex justify-center items-center">
+          <a
+            href="https://www.instagram.com/prahyatechservices/"
+            className="media-icon w-16 h-16  md:w-20 md:h-20 flex justify-center items-center"
+          >
             <FaInstagram />
-          </div>
-          <div className="media-icon w-16 h-16  md:w-20 md:h-20 flex justify-center items-center">
+          </a>
+          <a
+            href="https://www.facebook.com/prahyatechservices"
+            className="media-icon w-16 h-16  md:w-20 md:h-20 flex justify-center items-center"
+          >
             <IoLogoFacebook />
-          </div>
-          <div className="media-icon w-16 h-16  md:w-20 md:h-20 flex justify-center items-center">
+          </a>
+          <a
+            href="https://www.linkedin.com/in/ayush-awasthi-0921b523b/"
+            className="media-icon w-16 h-16  md:w-20 md:h-20 flex justify-center items-center"
+          >
             <FaLinkedin />
-          </div>
+          </a>
         </div>
 
         {/* Copyright */}
         <p className="text-[rgba(255,255,255,0.6)] text-center text-lg">
-          Copyright @2022 All Rights Reserved | This Website is made by AYUSH
-          Awasthi. | Redevloped by Gadher Nischay.
+          Copyright @2022 All Rights Reserved | This Website is made by{" "}
+          <a
+            href="https://www.linkedin.com/in/nischay-gadher/"
+            className="text-orange-700 font-medium"
+            target="_blank"
+          >
+            Ayush Awasthi
+          </a>
+          . | Redevloped by{" "}
+          <a
+            href="https://www.linkedin.com/in/nischay-gadher/"
+            className="text-orange-700 font-medium"
+            target="_blank"
+          >
+            Gadher Nischay
+          </a>
+          .
         </p>
       </div>
     </footer>
