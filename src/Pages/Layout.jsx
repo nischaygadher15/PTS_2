@@ -11,29 +11,24 @@ import "react-toastify/dist/ReactToastify.css";
 const Layout = ({ children }) => {
   let start = Date.now();
   //Bottom to top Button Functionality
-  let [scrollY, setScrollY] = useState(false);
+  let [b2tscrollY, setb2tScrollY] = useState(false);
   let webpage = useRef(null);
 
   let handleScroll = (e) => {
-    if (e.target.scrollTop > 600) setScrollY(true);
-    else setScrollY(false);
+    if (e.target.scrollingElement.scrollTop > 600) setb2tScrollY(true);
+    else setb2tScrollY(false);
   };
 
   let handleB2T = () => {
-    webpage.current.scrollTo({
+    window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
   };
 
   useEffect(() => {
-    let addScroll = () =>
-      webpage.current?.addEventListener("scroll", handleScroll);
-    window.addEventListener("load", addScroll);
-    return () => {
-      window.removeEventListener("load", addScroll);
-      webpage.current?.removeEventListener("scroll", handleScroll);
-    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("resize", handleScroll);
   }, []);
 
   //Loader Context
@@ -74,8 +69,8 @@ const Layout = ({ children }) => {
       <main className="max-w-full pt-24 flex flex-col items-center">
         {children}
       </main>
-      {scrollY && (
-        <div className="absolute bottom-7 right-10">
+      {b2tscrollY && (
+        <div className="fixed bottom-7 right-10">
           <Bottom2Top handler={handleB2T} />
         </div>
       )}
