@@ -44,38 +44,44 @@ const Layout = ({ children }) => {
     }
   }, []);
 
-  if (isLoading) {
-    return <Loader />;
-  }
+  // if (isLoading) {
+  //   return <Loader />;
+  // }
 
   return (
-    <div
-      className="max-w-screen min-h-screen overflow-x-hidden flex flex-col items-center"
-      ref={webpage}
-    >
-      <ToastContainer
-        position="bottom-left"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick={false}
-        rtl={false}
-        pauseOnFocusLoss={false}
-        draggable={false}
-        pauseOnHover
-        theme="light"
-      />
-      <Navbar />
-      <main className="max-w-full pt-24 flex flex-col items-center">
-        {children}
-      </main>
-      {b2tscrollY && (
-        <div className="fixed bottom-7 right-10">
-          <Bottom2Top handler={handleB2T} />
+    <>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <div
+          className="max-w-screen min-h-screen overflow-x-hidden flex flex-col items-center"
+          ref={webpage}
+        >
+          <ToastContainer
+            position="bottom-left"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick={false}
+            rtl={false}
+            pauseOnFocusLoss={false}
+            draggable={false}
+            pauseOnHover
+            theme="light"
+          />
+          <Navbar />
+          <main className="max-w-full pt-24 flex flex-col items-center">
+            {children}
+          </main>
+          {b2tscrollY && (
+            <div className="fixed bottom-7 right-10">
+              <Bottom2Top handler={handleB2T} />
+            </div>
+          )}
+          <Footer />
         </div>
       )}
-      <Footer />
-    </div>
+    </>
   );
 };
 
