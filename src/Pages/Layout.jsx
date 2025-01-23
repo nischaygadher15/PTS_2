@@ -58,7 +58,7 @@ const Layout = ({ children }) => {
           ref={webpage}
         >
           <ToastContainer
-            position="bottom-left"
+            position="top-center"
             autoClose={3000}
             hideProgressBar={false}
             newestOnTop={false}
